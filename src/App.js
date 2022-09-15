@@ -7,12 +7,21 @@ import Preferences from './components/Preferences/Preferences';
 import LandingPage from './components/LandingPage/LandingPage';
 import Login from './components/Login/Login';
 
+function setToken(userToken) {
+  sessionStorage.setItem('token', JSON.stringify(userToken));
+}
+function getToken() {
+  const tokenString = sessionStorage.setItem('token');
+  const userToken = JSON.parse(tokenString);
+  return userToken?.token
+}
+
 function App() {
-  const [token, setToken] = useState()
-  
+  // const [token, setToken] = useState()
+  const token = getToken();
   if (!token) {
     return <Login setToken={setToken} />;
-  }
+  };
   
   
   return (
